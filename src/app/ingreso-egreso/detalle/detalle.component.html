@@ -15,11 +15,20 @@
               </thead>
 
               <tbody>
-                <tr>
-                  <td>Descripción</td>
-                  <td>Monto</td>
-                  <td>Tipo</td>
-                  <td>acciones</td>
+                <tr *ngFor="let io of items$ | async | orderIos">
+                  <td>{{io.description}}</td>
+                  <td>{{io.amount}}</td>
+                  <td><span [ngClass]="{
+                                'text-danger': io.type === 'outcome',
+                                'text-success': io.type === 'income'
+                                }">{{io.type}}</span>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger" (click)="delete(io.uid)">
+                      <i class="fa fa-trash"></i>
+                      Borrar
+                    </button>
+                  </td>
                 </tr>
               </tbody>
 

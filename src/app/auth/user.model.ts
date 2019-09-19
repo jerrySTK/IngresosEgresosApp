@@ -1,5 +1,17 @@
 export class User {
-    constructor(public name: string, public uid: string, public email: string) {
+    name: string;
+    uid?: string;
+    email: string;
 
+    constructor(obj: IUser) {
+        this.name = obj && obj.name || null;
+        this.email = obj && obj.email || null;
+        this.uid = obj && obj.uid || null;
     }
+}
+
+export interface IUser {
+    name: string;
+    uid?: string;
+    email: string;
 }

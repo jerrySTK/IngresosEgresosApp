@@ -23,6 +23,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { reducers } from './app.reducers';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { OrderIosPipe } from './ingreso-egreso/order-ios.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     DetalleComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    OrderIosPipe
   ],
   imports: [
     BrowserModule,
