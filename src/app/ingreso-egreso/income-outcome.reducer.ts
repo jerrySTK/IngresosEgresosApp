@@ -1,9 +1,13 @@
 import * as fromActions from './income-outcome.actions';
 import { IncomeOutcome } from './income-outcome.model';
-
+import { AppState } from '../app.reducers';
 
 export interface IncomeOutcomeState {
     items: IncomeOutcome[];
+}
+
+export interface ExtendedAppState extends AppState {
+    io: IncomeOutcomeState;
 }
 
 const initialState: IncomeOutcomeState = { items: [] };
@@ -44,3 +48,5 @@ export const getIncomeCount = (state: IncomeOutcomeState) => {
 export const getOutcomeCount = (state: IncomeOutcomeState) => {
     return state.items.filter(e => e.type === 'outcome').length;
 };
+
+export const getItems = (state: IncomeOutcomeState) => state.items;

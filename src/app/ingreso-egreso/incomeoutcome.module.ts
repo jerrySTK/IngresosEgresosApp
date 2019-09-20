@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { DashboardRoutingModule } from '../dashboard/dashboard-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './income-outcome.reducer';
 
 
 
@@ -25,7 +27,8 @@ import { DashboardRoutingModule } from '../dashboard/dashboard-routing.module';
     FormsModule,
     SharedModule,
     RouterModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    StoreModule.forFeature('io', reducer)
   ]
 })
 export class IncomeoutcomeModule {

@@ -14,7 +14,6 @@ import { reducers } from './app.reducers';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthModule } from './auth/auth.module';
-import { IncomeoutcomeModule } from './ingreso-egreso/incomeoutcome.module';
 
 @NgModule({
   declarations: [
@@ -31,8 +30,7 @@ import { IncomeoutcomeModule } from './ingreso-egreso/incomeoutcome.module';
       maxAge: 25,
       logOnly: environment.production
     }),
-    AuthModule,
-    IncomeoutcomeModule
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

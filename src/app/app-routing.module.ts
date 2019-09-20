@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AuthGuardService } from './auth/auth-guard.service';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     {
         path: '',
-        loadChildren: './ingreso-egreso/incomeoutcome.module#IncomeoutcomeModule'
+        loadChildren: './ingreso-egreso/incomeoutcome.module#IncomeoutcomeModule',
+        canLoad: [ AuthGuardService]
     },
     { path: '**', redirectTo: '' }
 ];

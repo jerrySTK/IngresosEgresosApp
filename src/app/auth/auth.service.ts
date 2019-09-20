@@ -16,12 +16,12 @@ import { Subscription } from 'rxjs';
 export class AuthService implements OnDestroy {
 
   private usersubscription: Subscription = new Subscription();
+  private user: User;
 
   constructor(private afAuth: AngularFireAuth,
     private router: Router,
     private afDb: AngularFirestore,
     private store: Store<AppState>) { }
-  private user: User;
 
   initAuthListener() {
     this.afAuth.authState.subscribe(fbUser => {

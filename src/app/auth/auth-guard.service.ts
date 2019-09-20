@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { map, take } from 'rxjs/operators';
+import { CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot, Router, CanLoad, Route, UrlSegment } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
-
+export class AuthGuardService implements CanActivate, CanLoad {
 
   constructor(private router: Router, private afAuth: AngularFireAuth) { }
 
@@ -21,6 +20,18 @@ export class AuthGuardService implements CanActivate {
         this.router.navigate(['/login']);
       })
     );
-}
+  }
+
+  canLoad(route: Route, segments: UrlSegment[]): boolean | Observable<boolean> | Promise<boolean> {
+    return this.afAuth.authState.pipe(
+      map(resp => {
+        if (resp != null) {
+          return true;
+        }
+        this.router.navigate(['/login']);
+      }),
+      take(1)
+    );
+  }
 }
 

@@ -4,7 +4,7 @@ import { AppState } from 'src/app/app.reducers';
 import { IncomeOutcome } from '../income-outcome.model';
 import { Observable } from 'rxjs';
 import { IncomeOutcomeService } from '../income-outcome.service';
-
+import * as fromReducer from '../../app.reducers';
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
@@ -15,7 +15,7 @@ export class DetalleComponent implements OnInit {
   constructor(private store: Store<AppState>, private ioService: IncomeOutcomeService) { }
 
   ngOnInit() {
-    this.items$ = this.store.select<IncomeOutcome[]>('io', 'items');
+    this.items$ = this.store.select<IncomeOutcome[]>(fromReducer.getItems);
   }
 
   delete(uid: string) {
